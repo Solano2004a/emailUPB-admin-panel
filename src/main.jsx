@@ -204,23 +204,22 @@ function App() {
   //TODO: Implement the login logic completely
   return (
     <>
-      {screen === "login" && <LoginView />}
-      {screen === "recover" && <RecoverView />}
+      {screen === "login" && (
+        <LoginView
+          onForgot={() => setScreen("recover")}
+          onLogin={() => setScreen("panel")}
+        />
+      )}
+      {screen === "recover" && (
+        <RecoverView onBack={() => setScreen("login")} />
+      )}
       {screen === "panel" && (
         <div className="app-shell">
           <Navbar
-            setExistingProgram={setExistingProgram}
-            setCourseName={setCourseName}
-            setExistingCourse={setExistingCourse}
-            setStudentCode={setStudentCode}
-            setStudentPreview={setStudentPreview}
             setSection={setSection}
             section={section}
-            openWizard={openWizard}
+            onLogOut={() => setScreen("login")}
             setModal={setModal}
-            setStep={setStep}
-            setProgramName={setProgramName}
-            setToast={setToast}
           />
           <Main
             setPasswords={setPasswords}

@@ -12,19 +12,7 @@ import {
 } from "lucide-react";
 import { openWizard, notify } from "../utils";
 
-function Navbar({
-  setSection,
-  section,
-  setStep,
-  setProgramName,
-  setExistingProgram,
-  setCourseName,
-  setExistingCourse,
-  setStudentCode,
-  setStudentPreview,
-  setModal,
-  setToast,
-}) {
+function Navbar({ setSection, section, onLogOut, setModal }) {
   return (
     <>
       <aside className="sidebar">
@@ -90,12 +78,7 @@ function Navbar({
           </span>
         </button>
         <div className="sidebar-bottom">
-          <button
-            className="logout"
-            onClick={() =>
-              notify("Sesión cerrada (demostración)", (setToast = { setToast }))
-            }
-          >
+          <button className="logout" onClick={onLogOut}>
             Cerrar Sesión <LogOut size={14} />
           </button>
           <span className="version">ADMIN · 1.0</span>
