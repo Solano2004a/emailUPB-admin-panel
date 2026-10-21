@@ -1352,6 +1352,178 @@ tbody tr:hover {
 /** END - REQUEST DETAILS STYLE */
 /**********************************
 
+//**********************************
+//** REPLY REQUEST DETAILS
+/***********************************
+
+.respuesta-solicitud {
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Botón Responder */
+.btn-responder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
+  padding: 8px 14px;
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-responder:hover {
+  color: #222;
+}
+
+.icono-responder {
+  font-size: 27px;
+  line-height: 1;
+}
+
+/* Recuadro del formulario */
+.respuesta-formulario {
+  width: 100%;
+  max-width: 720px;
+  margin: 18px auto;
+  padding: 20px 7px 16px;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* Campos */
+.campo-respuesta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 0 12px;
+}
+
+.campo-respuesta label {
+  margin-bottom: 5px;
+  color: #444;
+  font-size: 11px;
+}
+
+.campo-respuesta select {
+  width: 175px;
+  height: 25px;
+  padding: 3px 6px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  background-color: #fff;
+  color: #555;
+  font-size: 10px;
+}
+
+.campo-descripcion {
+  margin-bottom: 20px;
+}
+
+.campo-descripcion textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 12px;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  background: #f5f5f5;
+  color: #333;
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1.5;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.campo-descripcion textarea:focus {
+  box-shadow: 0 0 0 1px #168bfa;
+}
+
+/* Botones de acción */
+.acciones-respuesta {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  padding-right: 8px;
+}
+
+.acciones-respuesta button {
+  padding: 5px 9px;
+  border: none;
+  border-radius: 3px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.btn-cancelar {
+  background: #dedede;
+  color: #333;
+}
+
+.btn-cancelar:hover {
+  background: #ccc;
+}
+
+.btn-enviar {
+  background: #444;
+  color: #fff;
+}
+
+.btn-enviar:hover {
+  background: #222;
+}
+
+.mensaje-error {
+  margin: 0 0 12px;
+  color: #c62828;
+  font-size: 12px;
+}
+
+/* Vista de la respuesta ya registrada */
+.modo-lectura {
+  border-color: transparent;
+  padding: 20px 7px;
+}
+
+.modo-lectura select:disabled {
+  opacity: 1;
+  color: #555;
+  background: #fff;
+  cursor: default;
+}
+
+.modo-lectura textarea[readonly] {
+  background: #f5f5f5;
+  cursor: default;
+}
+
+@media (max-width: 600px) {
+  .respuesta-formulario {
+    padding: 16px 10px;
+  }
+
+  .campo-descripcion textarea {
+    min-height: 90px;
+  }
+
+  .acciones-respuesta {
+    gap: 8px;
+  }
+}
+
+/**********************************
+//** END - REPLY REQUEST DETAILS
+/***********************************
+
 /*********************************
 /** CREATED PROGRAMS STYLE */
 /********************************/

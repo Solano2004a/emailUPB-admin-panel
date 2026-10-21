@@ -241,6 +241,7 @@ function App() {
             setStudentCode={setStudentCode}
             setStudentPreview={setStudentPreview}
             section={section}
+            setSection={setSection}
             requests={requests}
             setRequests={setRequests}
             filter={filter}

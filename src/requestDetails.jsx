@@ -1,13 +1,140 @@
 import React from "react";
 import { ArrowLeft, Reply, FileText } from "lucide-react";
-import "./SolicitudLicencia.css";
+import "./styles.css";
 
-function RequestDetails() {
+import { useState } from "react";
+import "./styles.css";
+
+function ReplyRequest({
+  setOpen,
+  open,
+  readOnly,
+  setReadOnly,
+  onEnviar = () => {},
+}) {
+  const [stateRequest, setStateRequest] = useState("");
+  const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
+
+  const handleCancelar = () => {
+    setStateRequest("");
+    setDescription("");
+    setError("");
+    setOpen(false);
+  };
+
+  const handleEnviar = async (e) => {
+    e.preventDefault();
+
+    if (!stateRequest) {
+      setError("Selecciona el estado de la solicitud.");
+      return;
+    }
+
+    setError("");
+
+    try {
+      await onEnviar({
+        stateRequest,
+        description,
+      });
+
+      // Cerrar el formulario después de enviar correctamente.
+      setOpen(false);
+      setReadOnly(true);
+    } catch (err) {
+      setError(err?.message || "No se pudo enviar la respuesta.");
+    }
+  };
+
+  return (
+    <div className="respuesta-solicitud">
+      {/* {!soloLectura && !open && (
+        <button
+          type="button"
+          className="btn-responder"
+          onClick={() => setOpen(true)}
+        >
+          <span className="icono-responder">↶</span>
+          Responder
+        </button>
+      )} */}
+
+      {(open || readOnly) && (
+        <form
+          className={`respuesta-formulario ${readOnly ? "modo-lectura" : ""}`}
+          onSubmit={handleEnviar}
+        >
+          <div className="campo-respuesta">
+            <label htmlFor="estado-solicitud">Estado de solicitud</label>
+
+            <select
+              id="estado-solicitud"
+              value={stateRequest}
+              onChange={(e) => setStateRequest(e.target.value)}
+              disabled={readOnly}
+              required={!readOnly}
+            >
+              <option value="">Seleccione estado</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="Aprobada">Aprobada</option>
+              <option value="Rechazada">Rechazada</option>
+            </select>
+          </div>
+
+          <div className="campo-respuesta campo-descripcion">
+            <label htmlFor="descripcion-respuesta">Descripción</label>
+
+            <textarea
+              id="descripcion-respuesta"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder={
+                readOnly
+                  ? ""
+                  : "Descripción opcional sobre algún detalle que el administrador quiera transmitir al estudiante"
+              }
+              readOnly={readOnly}
+              rows={4}
+            />
+          </div>
+
+          {error && (
+            <p className="mensaje-error" role="alert">
+              {error}
+            </p>
+          )}
+
+          {!readOnly && (
+            <div className="acciones-respuesta">
+              <button
+                type="button"
+                className="btn-cancelar"
+                onClick={handleCancelar}
+              >
+                Cancelar
+              </button>
+
+              <button type="submit" className="btn-enviar">
+                Enviar
+              </button>
+            </div>
+          )}
+        </form>
+      )}
+    </div>
+  );
+}
+
+function RequestDetails({ onBack }) {
+  const [open, setOpen] = useState(false);
+  const [readOnly, setReadOnly] = useState(false);
+
   const solicitud = {
     programa: "Nombre de programa - Nombre del modulo",
     correo: "correosestudiante@upb.edu",
     codigoEstudiantil: "55555",
-    descripcion: "",
+    description: "",
     fechaInicio: "09/09/25",
     fechaFin: "13/09/25",
     archivos: [
@@ -33,7 +160,7 @@ function RequestDetails() {
       <header className="licencia-header">
         <button
           className="licencia-back-button"
-          onClick={volver}
+          onClick={onBack}
           aria-label="Volver"
         >
           <ArrowLeft size={22} strokeWidth={1.8} />
@@ -59,7 +186,7 @@ function RequestDetails() {
           <textarea
             id="motivo-licencia"
             className="licencia-description"
-            value={solicitud.descripcion}
+            value={solicitud.description}
             placeholder="Descripción"
             readOnly
           />
@@ -98,12 +225,21 @@ function RequestDetails() {
           <button
             type="button"
             className="licencia-reply-button"
-            onClick={responder}
+            onClick={() => setOpen(true)}
           >
             <Reply size={27} strokeWidth={2.5} />
             <span>Responder</span>
           </button>
         </div>
+
+        {(open || readOnly) && (
+          <ReplyRequest
+            setOpen={setOpen}
+            open={open}
+            readOnly={readOnly}
+            setReadOnly={setReadOnly}
+          />
+        )}
       </section>
     </main>
   );

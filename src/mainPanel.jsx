@@ -32,6 +32,7 @@ import {
   deleteSelected,
   openWizard,
 } from "./utils";
+import RequestDetails from "./requestDetails";
 
 //*PANEL PRINCIPAL
 function Main({
@@ -54,6 +55,7 @@ function Main({
   setStudentCode,
   setStudentPreview,
   section,
+  setSection,
   requests,
   setRequests,
   filter,
@@ -247,7 +249,10 @@ function Main({
                     </thead>
                     <tbody>
                       {filtered.map((r) => (
-                        <tr key={r.id}>
+                        <tr
+                          key={r.id}
+                          onClick={() => setSection("requestDetails")}
+                        >
                           <td>
                             <input
                               type="checkbox"
@@ -329,6 +334,9 @@ function Main({
                 </div>
               </div>
             </>
+          )}
+          {section === "requestDetails" && (
+            <RequestDetails onBack={() => setSection("requests")} />
           )}
 
           {section === "programs" && (
