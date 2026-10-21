@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { ChangePassword } from "./changePassword";
-import { CreatedPrograms } from "./createdPrograms";
+import { CreatedPrograms } from "./admin-panel/createdPrograms";
 import {
   ChevronDown,
   FileText,

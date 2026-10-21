@@ -4,13 +4,14 @@ import { createRoot } from "react-dom/client";
 import { X, Check } from "lucide-react";
 import "./styles.css";
 
-import { Navbar } from "./Navbar";
+import { Navbar } from "./admin-panel/navbar";
 import { openWizard } from "./utils";
 
 import { Wizard } from "./wizard";
-import { Report } from "./report";
+import { Report } from "./admin-panel/report";
 import { ChangePassword } from "./changePassword";
 import { Main } from "./mainPanel";
+import { LoginView, RecoverView } from "./login/Login";
 const initialRequests = [
   {
     id: 1,
@@ -165,6 +166,7 @@ const seedAcademicPrograms = [
 
 //*APP
 function App() {
+  const [screen, setScreen] = useState("login");
   const [section, setSection] = useState("requests");
   const [requests, setRequests] = useState(initialRequests);
   const [filter, setFilter] = useState("todos");
@@ -199,122 +201,129 @@ function App() {
   });
   const [showPassword, setShowPassword] = useState(false);
 
+  //TODO: Implement the login logic completely
   return (
-    <div className="app-shell">
-      <Navbar
-        setExistingProgram={setExistingProgram}
-        setCourseName={setCourseName}
-        setExistingCourse={setExistingCourse}
-        setStudentCode={setStudentCode}
-        setStudentPreview={setStudentPreview}
-        setSection={setSection}
-        section={section}
-        openWizard={openWizard}
-        setModal={setModal}
-        setStep={setStep}
-        setProgramName={setProgramName}
-        setToast={setToast}
-      />
-      <Main
-        setPasswords={setPasswords}
+    <>
+      {screen === "login" && <LoginView />}
+      {screen === "recover" && <RecoverView />}
+      {screen === "panel" && (
+        <div className="app-shell">
+          <Navbar
+            setExistingProgram={setExistingProgram}
+            setCourseName={setCourseName}
+            setExistingCourse={setExistingCourse}
+            setStudentCode={setStudentCode}
+            setStudentPreview={setStudentPreview}
+            setSection={setSection}
+            section={section}
+            openWizard={openWizard}
+            setModal={setModal}
+            setStep={setStep}
+            setProgramName={setProgramName}
+            setToast={setToast}
+          />
+          <Main
+            setPasswords={setPasswords}
+            showPassword={showPassword}
+            passwords={passwords}
+            setStep={setStep}
+            setProgramName={setProgramName}
+            setExistingProgram={setExistingProgram}
+            academicPrograms={academicPrograms}
+            setAcademicPrograms={setAcademicPrograms}
+            expandedPrograms={expandedPrograms}
+            setExpandedPrograms={setExpandedPrograms}
+            expandedModules={expandedModules}
+            setExpandedModules={setExpandedModules}
+            enrollmentModal={enrollmentModal}
+            setEnrollmentModal={setEnrollmentModal}
+            setCourseName={setCourseName}
+            setExistingCourse={setExistingCourse}
+            setStudentCode={setStudentCode}
+            setStudentPreview={setStudentPreview}
+            section={section}
+            requests={requests}
+            setRequests={setRequests}
+            filter={filter}
+            students={students}
+            setReportType={setReportType}
+            setModal={setModal}
+            setSearch={setSearch}
+            search={search}
+            setFilter={setFilter}
+            setSelected={setSelected}
+            selected={selected}
+            setToast={setToast}
+          />
+          {modal === "wizard" && (
+            <Wizard
+              setPrograms={setPrograms}
+              programs={programs}
+              step={step}
+              setStep={setStep}
+              setProgramName={setProgramName}
+              programName={programName}
+              setExistingProgram={setExistingProgram}
+              existingProgram={existingProgram}
+              setCourses={setCourses}
+              setCourseName={setCourseName}
+              courseName={courseName}
+              setExistingCourse={setExistingCourse}
+              existingCourse={existingCourse}
+              setCourseStart={setCourseStart}
+              courseStart={courseStart}
+              setCourseEnd={setCourseEnd}
+              courseEnd={courseEnd}
+              courses={courses}
+              setStudentCode={setStudentCode}
+              studentCode={studentCode}
+              setStudentPreview={setStudentPreview}
+              studentPreview={studentPreview}
+              setStudents={setStudents}
+              students={students}
+              setModal={setModal}
+              setSection={setSection}
+              setToast={setToast}
+            />
+          )}
+          {modal === "report" && (
+            <Report
+              requests={requests}
+              programs={programs}
+              setReportType={setReportType}
+              reportType={reportType}
+              setReportStudent={setReportStudent}
+              reportStudent={reportStudent}
+              setReportProgram={setReportProgram}
+              reportProgram={reportProgram}
+              setModal={setModal}
+              setToast={setToast}
+            />
+          )}
+          {/* {modal === "password" && (
+        <ChangePassword
         showPassword={showPassword}
         passwords={passwords}
-        setStep={setStep}
-        setProgramName={setProgramName}
-        setExistingProgram={setExistingProgram}
-        academicPrograms={academicPrograms}
-        setAcademicPrograms={setAcademicPrograms}
-        expandedPrograms={expandedPrograms}
-        setExpandedPrograms={setExpandedPrograms}
-        expandedModules={expandedModules}
-        setExpandedModules={setExpandedModules}
-        enrollmentModal={enrollmentModal}
-        setEnrollmentModal={setEnrollmentModal}
-        setCourseName={setCourseName}
-        setExistingCourse={setExistingCourse}
-        setStudentCode={setStudentCode}
-        setStudentPreview={setStudentPreview}
-        section={section}
-        requests={requests}
-        setRequests={setRequests}
-        filter={filter}
-        students={students}
-        setReportType={setReportType}
+        setPasswords={setPasswords}
+        setShowPassword={setShowPassword}
         setModal={setModal}
-        setSearch={setSearch}
-        search={search}
-        setFilter={setFilter}
-        setSelected={setSelected}
-        selected={selected}
         setToast={setToast}
-      />
-      {modal === "wizard" && (
-        <Wizard
-          setPrograms={setPrograms}
-          programs={programs}
-          step={step}
-          setStep={setStep}
-          setProgramName={setProgramName}
-          programName={programName}
-          setExistingProgram={setExistingProgram}
-          existingProgram={existingProgram}
-          setCourses={setCourses}
-          setCourseName={setCourseName}
-          courseName={courseName}
-          setExistingCourse={setExistingCourse}
-          existingCourse={existingCourse}
-          setCourseStart={setCourseStart}
-          courseStart={courseStart}
-          setCourseEnd={setCourseEnd}
-          courseEnd={courseEnd}
-          courses={courses}
-          setStudentCode={setStudentCode}
-          studentCode={studentCode}
-          setStudentPreview={setStudentPreview}
-          studentPreview={studentPreview}
-          setStudents={setStudents}
-          students={students}
-          setModal={setModal}
-          setSection={setSection}
-          setToast={setToast}
         />
-      )}
-      {modal === "report" && (
-        <Report
-          requests={requests}
-          programs={programs}
-          setReportType={setReportType}
-          reportType={reportType}
-          setReportStudent={setReportStudent}
-          reportStudent={reportStudent}
-          setReportProgram={setReportProgram}
-          reportProgram={reportProgram}
-          setModal={setModal}
-          setToast={setToast}
-        />
-      )}
-      {/* {modal === "password" && (
-        <ChangePassword
-          showPassword={showPassword}
-          passwords={passwords}
-          setPasswords={setPasswords}
-          setShowPassword={setShowPassword}
-          setModal={setModal}
-          setToast={setToast}
-        />
-      )} */}
-      {toast && (
-        <div className="toast">
-          <span className="toast-check">
-            <Check size={15} />
-          </span>
-          {toast}
-          <button onClick={() => setToast("")}>
-            <X size={14} />
-          </button>
+        )} */}
+          {toast && (
+            <div className="toast">
+              <span className="toast-check">
+                <Check size={15} />
+              </span>
+              {toast}
+              <button onClick={() => setToast("")}>
+                <X size={14} />
+              </button>
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 }
 

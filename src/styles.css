@@ -29,6 +29,375 @@ select {
 button {
   cursor: pointer;
 }
+
+/**********************************/
+/** LOGIN SCREEN
+/***********************************/
+*******************************
+/** LOGIN SCREEN **************
+/********************************/
+/* ================================
+   ESTILOS GENERALES - EMAILUPB
+   ================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body:has(.card) {
+  min-height: 100vh;
+  background-color: #262626;
+  font-family: "Lato", Arial, sans-serif;
+  color: #666666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+/* ================================
+   TARJETA PRINCIPAL
+   ================================ */
+
+.card {
+  width: 342px;
+  max-width: 100%;
+  background-color: #d9d9d9;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: none;
+  margin: auto;
+}
+
+/* Tarjeta más ancha para recuperación */
+.card:has(.recover-header) {
+  width: 429px;
+}
+
+/* ================================
+   ENCABEZADO NEGRO
+   ================================ */
+
+.card-header {
+  height: 45px;
+  width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 16px;
+}
+
+.logo-icon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.card-title {
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* Encabezado de recuperación */
+
+.recover-header {
+  height: 55px;
+}
+
+.recover-title {
+  font-size: 28px;
+  text-align: center;
+}
+
+/* ================================
+   CUERPO DEL FORMULARIO
+   ================================ */
+
+.card-body {
+  width: 100%;
+  padding: 40px 32px 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Campos de entrada */
+
+.field {
+  display: block;
+  width: 100%;
+  height: 33px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  outline: none;
+  background-color: #f5f5f5;
+  color: #444444;
+  font-size: 12px;
+  font-weight: 400;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.field::placeholder {
+  color: #888888;
+  opacity: 1;
+}
+
+.field:focus {
+  border-color: #888888;
+  box-shadow: 0 0 0 2px rgb(0 0 0 / 5%);
+}
+
+/* ================================
+   CAMPO DE CONTRASEÑA Y OJO
+   ================================ */
+
+.password-row {
+  width: 100%;
+  height: 33px;
+  margin-top: 16px;
+  display: flex;
+  align-items: stretch;
+}
+
+.field-password {
+  flex: 1;
+  width: 0;
+  height: 33px;
+  border-radius: 5px 0 0 5px;
+}
+
+.toggle-eye {
+  width: 29px;
+  min-width: 29px;
+  height: 33px;
+  padding: 0;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  background-color: #aaaaaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-eye:hover {
+  background-color: #999999;
+}
+
+.toggle-eye svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* ================================
+   BOTÓN PRINCIPAL
+   ================================ */
+
+.btn-primary {
+  width: 100%;
+  height: 33px;
+  margin-top: 23px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #424040;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: #333333;
+}
+
+.btn-primary:active {
+  transform: scale(0.99);
+}
+
+.btn-primary:focus-visible,
+.link:focus-visible,
+.toggle-eye:focus-visible {
+  outline: 2px solid #777777;
+  outline-offset: 2px;
+}
+
+/* ================================
+   ENLACES
+   ================================ */
+
+.link {
+  align-self: flex-start;
+  width: auto;
+  margin-top: 10px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #666666;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 1px;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: #333333;
+}
+
+/* ================================
+   VISTA DE RECUPERACIÓN
+   ================================ */
+
+.recover-header + .card-body {
+  padding: 22px 32px 30px;
+}
+
+/* Alternativa entre código y correo */
+
+.separator-o {
+  margin-top: 11px;
+  margin-bottom: 12px;
+  color: #666666;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+/* Campos más altos en recuperación */
+
+.recover-header + .card-body > .field {
+  height: 42px;
+  padding: 0 16px;
+  font-size: 13px;
+  border-radius: 5px;
+}
+
+/* Botón Recuperar */
+
+.recover-header + .card-body > .btn-primary {
+  height: 41px;
+  margin-top: 19px;
+  font-size: 15px;
+}
+
+/* Enlace de regreso */
+
+.recover-header + .card-body > .link {
+  margin-top: 32px;
+  font-size: 15px;
+}
+
+/* ================================
+   MENSAJE INFORMATIVO
+   ================================ */
+
+.notice {
+  width: calc(100% + 2px);
+  min-height: 138px;
+  margin: 17px auto 0;
+  padding: 15px 8px 10px;
+  border: 1px solid #a5a5a5;
+  border-radius: 5px;
+  background-color: #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.notice p {
+  margin: 13px 0 10px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.notice-strong {
+  color: #ff3333;
+}
+
+.notice-muted {
+  color: #666666;
+}
+
+/* ================================
+   DISEÑO RESPONSIVE
+   ================================ */
+
+@media (max-width: 480px) {
+  body {
+    padding: 16px;
+  }
+
+  .card,
+  .card:has(.recover-header) {
+    width: 100%;
+    max-width: 429px;
+  }
+
+  .card-body {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .recover-header + .card-body {
+    padding: 22px 24px 28px;
+  }
+
+  .card-title {
+    font-size: 22px;
+  }
+
+  .recover-title {
+    font-size: clamp(21px, 6vw, 28px);
+  }
+
+  .notice {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}
+
+@media (max-height: 580px) {
+  body {
+    align-items: flex-start;
+  }
+
+  .card {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+}
+
+/**********************************/
+/** END - LOGIN SCREEN
+/***********************************/
+
 .app-shell {
   min-height: 100vh;
   padding: 22px;
@@ -1213,6 +1582,7 @@ tbody tr:hover {
 /*********************************
 /** END - CREATED PROGRAMS STYLE */
 /********************************/
+
 .overlay {
   position: fixed;
   inset: 0;

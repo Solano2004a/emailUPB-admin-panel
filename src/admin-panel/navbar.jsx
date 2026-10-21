@@ -10,7 +10,7 @@ import {
   Pencil,
   BookOpen,
 } from "lucide-react";
-import { openWizard, notify } from "./utils";
+import { openWizard, notify } from "../utils";
 
 function Navbar({
   setSection,

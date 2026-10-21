@@ -1,7 +1,7 @@
 import { X, ChevronDown, FileText, Download } from "lucide-react";
 import { jsPDF } from "jspdf";
 
-import { notify, closeModal } from "./utils";
+import { notify, closeModal } from "../utils";
 
 //************************************** */
 //* REPORT COMPONENTS

@@ -7,7 +7,7 @@ import {
   X,
 } from "lucide-react";
 
-import { notify } from "./utils";
+import { notify } from "../utils";
 function EnrollmentModal({
   academicPrograms,
   setAcademicPrograms,
