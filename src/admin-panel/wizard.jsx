@@ -10,7 +10,7 @@ import {
   Plus,
   Check,
 } from "lucide-react";
-import { notify, closeModal } from "./utils";
+import { notify, closeModal } from "../utils";
 
 //***************************************** */
 //*"Crear/agregar" COMPONENTS **************
@@ -464,4 +464,4 @@ const addStudent = ({
   notify("Estudiante agregado al curso", (setToast = { setToast }));
 };
 
-export { Wizard };
+export default Wizard;

@@ -34,7 +34,7 @@ import {
 } from "./utils";
 
 //*PANEL PRINCIPAL
-function Main({
+function AdminPanel({
   setPasswords,
   showPassword,
   passwords,
@@ -446,4 +446,4 @@ function Main({
   );
 }
 
-export { Main };
+export default AdminPanel;
